@@ -1,1 +1,5 @@
-
+first:
+  from_airport: dulles
+  to_airport:   atlanta
+  date:         <%= DateTime.now %>
+  duration:     6_048_000
