@@ -2,10 +2,13 @@
 <html>
   <head>
     <title><%= yield(:title) %></title>
-    <%= render 'rails_default'%>
+    <%= render 'layouts/rails_default'%>
   </head>
-
   <body>
-    <%= yield %>
+    <div class='center jumbotron jumbotron-fluid'>
+      <div class='container container-fluid'>
+        <%= yield %>
+      </div>
+    </div>
   </body>
 </html>
