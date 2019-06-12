@@ -3,3 +3,6 @@ dulles:
 
 atlanta:
   code: 'ATL'
+
+tokyo:
+  code: 'NRT'

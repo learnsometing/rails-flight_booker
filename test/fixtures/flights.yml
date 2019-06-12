@@ -1,5 +1,18 @@
+<% date = DateTime.new(2019, 8, 2, 12, 0, 0) %>
 first:
   from_airport: dulles
   to_airport:   atlanta
-  date:         <%= DateTime.now %>
+  date:         <%= date %>
   duration:     6_048_000
+
+second:
+  from_airport: dulles
+  to_airport:   tokyo
+  date:         <%= date %>
+  duration:     50_688_000
+
+third:
+  from_airport: tokyo
+  to_airport:   atlanta
+  date:         <%= date %>
+  duration:     75_600_000

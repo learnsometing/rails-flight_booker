@@ -5,4 +5,5 @@ class Flight < ApplicationRecord
   belongs_to :from_airport, foreign_key: 'start_airport_id', class_name: 'Airport'
   validates :date, presence: true
   validates :duration, presence: true
+  default -> { order(:date) }
 end
