@@ -27,7 +27,7 @@
 <% unless @flights.empty?%>
     <%= form_for :booking, method: 'get', url: new_booking_path do |f| %>
         <%= f.hidden_field(:num_tickets, value: params[:search][:num_tickets]) %>
-        <%= f.collection_radio_buttons(:flight_ids, @flights, :id, :flight_info) do |b|%>
+        <%= f.collection_radio_buttons(:flight_id, @flights, :id, :flight_info) do |b|%>
             <div class='booking row d-flex justify-content-center'>
                 <%= b.label class: 'booking-label'%>
                 <div class='form-check'>

@@ -1,0 +1,23 @@
+<%= provide(:title, 'Book a flight')%>
+<h1>Trip Itinerary</h1>
+<div class='row'>
+    <span class='col-lg-2 offset-lg-3'><%= @departure_time %></span>
+    <span class='col-lg-2'>--></span>
+    <span class='col-lg-2'><%= @arrival_time %></span>
+</div>
+<div class='row'>
+    <span class='col-lg-2 offset-lg-3'><%= @from.code %></span>
+    <span class='col-lg-2'><%= @flight.format_duration%></span>
+    <span class='col-lg-2'><%= @to.code %></span>
+</div>
+<div class='row'>
+    <%= form_for @booking do |f| %>
+        Passenger Info *
+        <%= f.hidden_field :flight_id, value: params[:booking][:flight_id]%>
+        <%= f.fields_for :passengers do |passenger_form| %>
+            <%= passenger_form.label :name %>
+            <%= passenger_form.text_field :name %>
+        <% end%>
+        <%= f.submit 'Book Flight'%>
+    <% end %>
+</div>

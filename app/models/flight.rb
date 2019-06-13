@@ -10,12 +10,12 @@ class Flight < ApplicationRecord
 
   default_scope -> { order(date: :asc) }
 
-  MS_HR = 3_600_000
-  MS_MIN = 60_000
+  S_HR = 3_600
+  S_MIN = 60
 
   def format_duration
-    hours = (duration / MS_HR).floor
-    min = ((duration % MS_HR) / MS_MIN).floor
+    hours = (duration / S_HR).floor
+    min = ((duration % S_HR) / S_MIN).floor
     "#{hours}hr #{min}min"
   end
 
