@@ -2,13 +2,17 @@
 
 class FlightsController < ApplicationController
   def index
-    @flights = Flight.find_by(search_params)
-    @dates = Flight.all.map { |f| [f.date.strftime('%B %e, %Y'), f.date] }
-  end
+    @dates = Flight.all.map { |f| [f.date.strftime('%B %e, %Y'), f.date] }.uniq
 
-  private
-
-  def search_params
-    params.require(:search).permit(:start_airport_id, :finish_airport_id, :date)
+    if params[:search]
+      @flights = Flight.where('start_airport_id = :from AND
+                              finish_airport_id = :to AND
+                              date           like :depart_on AND
+                              seats_available  >= :tickets',
+                              from: params[:search][:from_airport_id],
+                              to: params[:search][:to_airport_id],
+                              depart_on: DateTime.parse(params[:search][:date]),
+                              tickets: params[:search][:num_tickets] )
+    end
   end
 end

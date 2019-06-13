@@ -1,20 +1,22 @@
 <%= provide(:title, 'Search flights')%>
-
-<%= form_for :search, method: 'get', url: flights_path do |f| %>
+<h1>Search Flights</h1>
+<%= form_with scope: :search, url: flights_path,  method: :get, local: true do |f| %>
     <div class='form-row'>
         <div class='col'>
-            <%= f.label 'Leaving From:'%>
-            <%= f.collection_select(:start_airport_id, Airport.all, :id, :code) %>
+            <%= f.label 'From:'%>
+            <%= f.collection_select(:from_airport_id, Airport.all, :id, :code) %>
         </div>
         <div class='col'>
-            <%= f.label 'Going to :'%>
-            <%= f.collection_select(:finish_airport_id, Airport.all, :id, :code) %>
+            <%= f.label 'To:'%>
+            <%= f.collection_select(:to_airport_id, Airport.all, :id, :code) %>
         </div>
-    </div>
-    <div class='form-row'>
         <div class='col'>
-            <%= f.label 'Date :'%>
+            <%= f.label 'Date:'%>
             <%= f.select(:date, @dates)%>
+        </div>
+        <div class='col'>
+            <%= f.label 'Passengers:'%>
+            <%= f.select(:num_tickets, (1..9).to_a) %>
         </div>
     </div>
     <div class='form-row'>
@@ -22,4 +24,17 @@
     </div>
 <% end %>
 <hr>
-<%= render @flights if @flights%>
+<% unless @flights.empty?%>
+    <%= form_for :booking, method: 'get', url: new_booking_path do |f| %>
+        <%= f.hidden_field(:num_tickets, value: params[:search][:num_tickets]) %>
+        <%= f.collection_radio_buttons(:flight_ids, @flights, :id, :flight_info) do |b|%>
+            <div class='booking row d-flex justify-content-center'>
+                <%= b.label class: 'booking-label'%>
+                <div class='form-check'>
+                    <%= b.radio_button class: 'form-check-input' %>
+                </div>
+            </div>
+        <% end %>
+        <%= f.submit "Book Flight", class: 'btn btn-primary'%>
+    <% end %>
+<% end %>

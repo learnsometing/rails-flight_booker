@@ -11,13 +11,15 @@ class FlightsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'returns the correct flights' do
-    get root_url(params: { search: { start_airport_id: @dulles.id,
-                                     finish_airport_id: @tokyo.id,
-                                     date: @date } })
-    assert_select 'div.flight', 1
-    get root_url(params: { search: { start_airport_id: @dulles.id,
-                                     finish_airport_id: @tokyo.id,
-                                     date: DateTime.now } })
-    assert_select 'div.flight', 0
+    get root_url(params: { search: { from_airport_id: @dulles.id,
+                                     to_airport_id: @tokyo.id,
+                                     date: @date, 
+                                     num_tickets: 1} })
+    assert_select 'form div.booking', 1
+    get root_url(params: { search: { from_airport_id: @dulles.id,
+                                     to_airport_id: @tokyo.id,
+                                     date: DateTime.now,
+                                     num_tickets: 1 } })
+    assert_select 'form div.booking', 0
   end
 end

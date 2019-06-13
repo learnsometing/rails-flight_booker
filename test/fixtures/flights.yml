@@ -4,15 +4,18 @@ first:
   to_airport:   atlanta
   date:         <%= date %>
   duration:     6_048_000
+  seats_available: 300
 
 second:
   from_airport: dulles
   to_airport:   tokyo
   date:         <%= date %>
   duration:     50_688_000
-
+  seats_available: 300
+  
 third:
   from_airport: tokyo
   to_airport:   atlanta
   date:         <%= date %>
   duration:     75_600_000
+  seats_available: 300
