@@ -1,10 +1,11 @@
-<div class='row'>
-    <span class='col-lg-2 offset-lg-3'><%= @departure_time %></span>
-    <span class='col-lg-2'>--></span>
-    <span class='col-lg-2'><%= @arrival_time %></span>
-</div>
-<div class='row'>
-    <span class='col-lg-2 offset-lg-3'><%= @from.code %></span>
-    <span class='col-lg-2'><%= @flight.format_duration%></span>
-    <span class='col-lg-2'><%= @to.code %></span>
+<%= provide(:title, 'View Booking')%>
+<%= provide(:header, render('layouts/bookings_header'))%>
+<h1>Your Trip</h1>
+<div class='row'><%= render 'shared/itinerary', object: @flight%></div>
+<div class='row'><h2>Passengers</h2></div></br>
+    <% @booking.passengers.each_with_index do |p| %>
+        <div class='d-flex justify-content-start passenger-info'>
+            <div><%= p.name %></div>
+        </div>
+    <% end %>
 </div>

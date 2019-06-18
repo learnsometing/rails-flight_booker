@@ -5,8 +5,12 @@
     <%= render 'layouts/rails_default'%>
   </head>
   <body>
+    <%= yield(:header)%>
     <div class='center jumbotron jumbotron-fluid'>
       <div class='container container-fluid'>
+        <% flash.each do |message_type, message| %>
+          <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
+        <% end %>
         <%= yield %>
       </div>
     </div>

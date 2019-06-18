@@ -1,0 +1,24 @@
+<nav class='navbar navbar-fixed-top navbar-expand-sm navbar-dark bg-dark'>
+    <div class='navbar-brand'><%= link_to 'Rails Airlines', root_url, class: 'home'%></div>
+    <div class='container container-fluid'>
+        <%= form_with scope: :search, url: flights_path,  method: :get, local: true, class: 'form-inline' do |f| %>
+            <div class='form-group search-criteria'>
+                <%= f.label 'From', class:'search-label'%>
+                <%= f.collection_select(:from_airport_id, Airport.all, :id, :code, {}, {class: 'custom-select'}) %>
+            </div>
+            <div class='form-group search-criteria'>
+                <%= f.label 'To', class:'search-label'%>
+                <%= f.collection_select(:to_airport_id, Airport.all, :id, :code, {}, {class: 'custom-select'}) %>
+            </div>
+            <div class='form-group search-criteria'>
+                <%= f.label 'Date', class:'search-label'%>{
+                <%= f.select(:date, flight_dates, {}, {class: 'custom-select'})%>
+            </div>
+            <div class='form-group search-criteria'>
+                <%= f.label 'Passengers', class:'search-label'%>
+                <%= f.select(:num_tickets, (1..9).to_a, {}, {class: 'custom-select'}) %>
+            </div>
+            <%= f.submit 'Search', class: 'navbar-item btn btn-outline-light'%>
+        <% end %>
+    </div>
+</nav>

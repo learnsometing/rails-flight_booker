@@ -1,37 +1,17 @@
 <%= provide(:title, 'Search flights')%>
-<h1>Search Flights</h1>
-<%= form_with scope: :search, url: flights_path,  method: :get, local: true do |f| %>
-    <div class='form-row'>
-        <div class='col'>
-            <%= f.label 'From:'%>
-            <%= f.collection_select(:from_airport_id, Airport.all, :id, :code) %>
-        </div>
-        <div class='col'>
-            <%= f.label 'To:'%>
-            <%= f.collection_select(:to_airport_id, Airport.all, :id, :code) %>
-        </div>
-        <div class='col'>
-            <%= f.label 'Date:'%>
-            <%= f.select(:date, @dates)%>
-        </div>
-        <div class='col'>
-            <%= f.label 'Passengers:'%>
-            <%= f.select(:num_tickets, (1..9).to_a) %>
-        </div>
-    </div>
-    <div class='form-row'>
-        <%= f.submit 'Search', class: 'btn btn-primary col-md-4 offset-md-4'%>
-    </div>
+<%= provide(:header, render('layouts/flights_header'))%>
+<% if flash.empty? && @flights.empty? %>
+    <h1>Where are you traveling?</h1>
 <% end %>
-<hr>
 <% unless @flights.empty?%>
     <%= form_for :booking, method: 'get', url: new_booking_path do |f| %>
         <%= f.hidden_field(:num_tickets, value: params[:search][:num_tickets]) %>
-        <%= f.collection_radio_buttons(:flight_id, @flights, :id, :flight_info) do |b|%>
-            <div class='booking row d-flex justify-content-center'>
-                <%= b.label class: 'booking-label'%>
-                <div class='form-check'>
-                    <%= b.radio_button class: 'form-check-input' %>
+        <% @flights.each do |flight| %>
+            <div class='booking row'>
+                <%= render 'shared/itinerary', object: flight%>
+                <div class='col align-self-center'>
+                    <%= f.label :flight_id, 'Select Flight'%>
+                    <%= f.radio_button(:flight_id, flight.id, required: true) %>
                 </div>
             </div>
         <% end %>

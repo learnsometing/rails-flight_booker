@@ -2,7 +2,6 @@
 
 class FlightsController < ApplicationController
   def index
-    @dates = Flight.all.map { |f| [f.date.strftime('%B %e, %Y'), f.date] }.uniq
     @flights = []
     if params[:search]
       @flights = Flight.where('start_airport_id = :from AND
@@ -13,6 +12,14 @@ class FlightsController < ApplicationController
                               to: params[:search][:to_airport_id],
                               depart_on: DateTime.parse(params[:search][:date]),
                               tickets: params[:search][:num_tickets])
+      flash.now[:danger] = 'The flight you requested could not be found' if @flights.empty?
     end
+  end
+
+  def update
+    @flight = Flight.find(params[:flight_id])
+    seats_available = @flight.seats_available - params[:seats_taken]
+    @flight.update_attribute(:seats_available, seats_available )
+    redirect_to bookings_path(params[:booking_id])
   end
 end

@@ -13,17 +13,29 @@ class Flight < ApplicationRecord
   S_HR = 3_600
   S_MIN = 60
 
+  def from
+    from_airport.code
+  end
+
+  def to
+    to_airport.code
+  end
+
+  def departure_time
+    date.in_time_zone(from_airport.time_zone).strftime('%B %e, %Y at %l:%M %P')
+  end
+
+  def arrival_time
+    (date + duration).in_time_zone(to_airport.time_zone).strftime('%B %e, %Y at %l:%M %P')
+  end
+
+  def format_date
+    date.strftime('%B %e, %Y')
+  end
+
   def format_duration
     hours = (duration / S_HR).floor
     min = ((duration % S_HR) / S_MIN).floor
     "#{hours}hr #{min}min"
-  end
-
-  def flight_info
-    codes = "#{from_airport.code}  ->  #{to_airport.code}\t\t"
-    flight_date = "#{date.strftime('%B %e, %Y at %l:%M')}\t\t"
-    duration = format_duration
-
-    codes + flight_date + duration
   end
 end

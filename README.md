@@ -1,24 +1,28 @@
-# README
+# Rails - Flight Booker
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This [project](https://www.theodinproject.com/lessons/building-advanced-forms) is an exercise in creating advanced forms in rails with helpers such as select() and collection_select(). It also covers creating nested attributes for model associations that include accepts_nested_attributes_for, with the fields_for helper.
 
-Things you may want to cover:
+[View on heroku]()
 
-* Ruby version
+OR
 
-* System dependencies
+Follow the directions under `Getting Started` to get a local copy up and running.
 
-* Configuration
+## Features
 
-* Database creation
+## Getting Started
 
-* Database initialization
+### Requirements:
 
-* How to run the test suite
+- Ruby 2.6.1
+- Rails 5.2.3
 
-* Services (job queues, cache servers, search engines, etc.)
+### Installation
 
-* Deployment instructions
+- Clone the repo
+- run bundle install to install all dependencies
+- run rails test to make sure all tests pass
 
-* ...
+### Author
+
+Brian Monaccio

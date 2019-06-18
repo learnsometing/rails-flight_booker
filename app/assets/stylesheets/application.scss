@@ -1,9 +1,66 @@
 @import 'bootstrap';
 
+@mixin row-style {
+    border: 2px solid lightgray;
+    border-radius: 4px;
+    padding: 2px;
+}
+
+body {
+    background-image: url('/assets/plane2.jpg');
+}
+
+.booking {
+    border: 1px solid black;
+    border-radius: 4px;
+    font-size: 1em;
+    padding: 1em;
+    margin-bottom: 1em;
+}
+
 .center {
     text-align: center;
 }
 
-.booking-label{
+.home {
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    &:hover {
+        text-decoration: none;
+        color: gray;
+    }
+}
+
+.itinerary-info {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    display: inline;
+    padding-right: 5px;
+}
+
+.navbar-brand {
+    font-size: 1.8em;
+    font-weight: bold;
+}
+
+.passenger-form, .passenger-info {
+    @include row-style;
+    margin-bottom: 10px;
+}
+
+.search-criteria {
+    @include row-style;
+    padding-left: 8px;
     margin-right: 10px;
+}
+
+.search-label{
+    line-height: 1.5;
+    font-size: 1.5em;
+    color: white;
+    padding-right: 10px;
 }

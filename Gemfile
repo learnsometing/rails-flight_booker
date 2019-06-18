@@ -41,6 +41,8 @@ gem 'bootstrap', '~> 4.3', '>= 4.3.1'
 gem 'faker', '~> 1.9', '>= 1.9.3'
 # bootstrap dependency
 gem 'jquery-rails', '~> 4.3', '>= 4.3.3'
+# assert_template functionality
+gem 'rails-controller-testing', '~> 1.0', '>= 1.0.4'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
