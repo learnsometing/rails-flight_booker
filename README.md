@@ -11,15 +11,17 @@ Follow the directions under `Getting Started` to get a local copy up and running
 ## Features
 
 Flight search form contained in the site navigation header.
-    - pick a starting airport, an airport to travel to, the date, and the number of passengers you will buy tickets for
-    - collection_select() used to populate the to and from airport dropdowns
-    - select() used to populate the date and passengers dropdown
+- pick a starting airport, an airport to travel to, the date, and the number of passengers you will buy tickets for
+- collection_select() used to populate the to and from airport dropdowns
+- select() used to populate the date and passengers dropdown
+
 Search results are returned as a form. The user can pick a flight by clicking its associated radio button.
-    - radio_button() helper used to create the buttons for each flight
-    - a hidden field is used to set the number of passengers passed in params to the Bookings Controller
+- radio_button() helper used to create the buttons for each flight
+- a hidden field is used to set the number of passengers passed in params to the Bookings Controller
+
 The booking form displays information about the flight the user chose, and has a field for each passenger's name.
-    - the number of passengers passed in params is used in Bookings#new to build the required number of passengers for the booking
-    - the fields_for() helper is used to submit the passenger names to the Bookings Controller
+- the number of passengers passed in params is used in Bookings#new to build the required number of passengers for the booking
+- the fields_for() helper is used to submit the passenger names to the Bookings Controller
 
 ## Getting Started
 
