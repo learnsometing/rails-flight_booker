@@ -2,11 +2,7 @@
 
 This [project](https://www.theodinproject.com/lessons/building-advanced-forms) is an exercise in creating advanced forms in rails with helpers such as select() and collection_select(). It also covers creating nested attributes for model associations that include accepts_nested_attributes_for, with the fields_for helper. For the purposes of this project, a user does not need to make an account or log in to use the app. This project is meant to solidify advanced concepts in form creation with rails helpers.
 
-<<<<<<< HEAD
 [View on heroku](https://learnsometing-flight-booker.herokuapp.com/)
-=======
-[View on heroku](https://dashboard.heroku.com/apps/learnsometing-flight-booker)
->>>>>>> 7147c589b6978c4a5e847a256118628de48a0e73
 
 OR
 
