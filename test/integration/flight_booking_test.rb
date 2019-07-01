@@ -11,6 +11,6 @@ class FlightBookingTest < ActionDispatch::IntegrationTest
     get new_booking_path(params: { booking: { flight_id: @flight.id,
                                               num_tickets: 2 } })
     assert_template 'bookings/new'
-    assert_select   'input.form-control', 2
+    assert_select   'input.form-control', 4
   end
 end

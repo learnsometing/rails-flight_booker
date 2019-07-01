@@ -10,7 +10,11 @@
         <%= f.fields_for :passengers do |passenger_form| %>
             <div class='row passenger-form'>
                 <%= passenger_form.label :name, class: 'align-self-center' %>
-                <%= passenger_form.text_field :name, placeholder: 'Passenger Name', class: 'form-control col', required: true%>
+                <%= passenger_form.text_field :name, placeholder: 'Passenger Name', class: 'form-control col', required: true %>
+            </div>
+            <div class='row passenger-form'>
+                <%= passenger_form.label :email, class: 'align-self-center'%>
+                <%= passenger_form.email_field :email, placeholder: 'email@example.com', class: 'form-control col', required: true %>
             </div>
         <% end%>
         <%= f.submit 'Confirm Booking', class: 'btn btn-primary'%>

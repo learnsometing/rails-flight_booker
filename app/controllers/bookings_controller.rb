@@ -19,6 +19,7 @@ class BookingsController < ApplicationController
     @flight = Flight.find(params[:booking][:flight_id])
     @booking = @flight.bookings.build(booking_params)
     if @booking&.save
+      PassengerMailer.with(booking: @booking).booking_conf.deliver_later
       flash[:success] = 'Flight booked successfully'
       redirect_to booking_path(@booking)
     else
@@ -34,6 +35,7 @@ class BookingsController < ApplicationController
   private
 
   def booking_params
-    params.require(:booking).permit(:flight_id, passengers_attributes: [:id, :name])
+    params.require(:booking).permit(:flight_id,
+                                    passengers_attributes: %i[id name email])
   end
 end
